@@ -5,11 +5,15 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import applicationTheme from '../themes/applicationStyle';
 import {windowHeight} from '../themes/dimensions';
 import Home from '../screens/home';
-import Account from '../screens/account';
-
+import Search from '../screens/search';
+import {SearchStack, SaleOffStack, ShoppingBag} from './childStack';
+import SaleOff from '../screens/home';
+import {useSelector} from 'react-redux';
+import {cos} from 'react-native-reanimated';
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabBar() {
+  const numberCart = useSelector(state => state._todoProduct.numberCart);
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -20,7 +24,7 @@ export default function BottomTabBar() {
       }}>
       <Tab.Screen
         name="Home"
-        component={Home}
+        component={SaleOffStack}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="fire" color={color} size={35} />
@@ -29,7 +33,7 @@ export default function BottomTabBar() {
       />
       <Tab.Screen
         name="Search"
-        component={Home}
+        component={SearchStack}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons name="magnify" color={color} size={35} />
@@ -52,7 +56,7 @@ export default function BottomTabBar() {
       />
       <Tab.Screen
         name="Bag"
-        component={Home}
+        component={ShoppingBag}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
@@ -61,7 +65,7 @@ export default function BottomTabBar() {
               size={30}
             />
           ),
-          tabBarBadge: 1,
+          tabBarBadge: numberCart,
         }}
       />
       <Tab.Screen

@@ -12,9 +12,9 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import Context from '../../context';
 import styles from './styles';
 import images from '../../themes/images';
-const Login = () => {
-  const {fbLogin, logout} = useContext(Context);
+import {fbLogin, googleLogin} from '../../services/Authentication';
 
+const Login = ({navigation}) => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -35,7 +35,10 @@ const Login = () => {
           <Text style={styles.textItem}>Google</Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          navigation.navigate('RegisterEmail');
+        }}>
         <View style={styles.item}>
           <Image style={styles.image} source={images.Email} />
           <Text style={styles.textItem}>Email</Text>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,10 +17,12 @@ const Header = ({name, navigation}) => {
   const close = () => {
     navigation.navigate('Home');
   };
+  const [email, setEmail] = useState('');
+  useEffect(() => {}, []);
   return (
     <View style={styles.container}>
-      <View style={{flex: 3}}>
-        <Text style={styles.nameUser}>{name}</Text>
+      <View style={styles.email}>
+        <Text style={styles.nameUser}>{name.toUpperCase()}</Text>
       </View>
       <View>
         <TouchableOpacity style={styles.close} onPress={close}>
@@ -37,15 +39,18 @@ const Header = ({name, navigation}) => {
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    height: '15%',
-    marginBottom: 30,
+    height: '20%',
     flexDirection: 'row',
     justifyContent: 'center',
     borderBottomWidth: 0.8,
     borderBottomColor: '#000',
+    alignItems: 'center',
+  },
+  email: {
+    flex: 3,
   },
   nameUser: {
-    fontSize: 30,
+    fontSize: 18,
     fontFamily: applicationTheme.fontFamily,
     fontWeight: 'bold',
   },

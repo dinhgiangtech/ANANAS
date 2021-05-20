@@ -1,6 +1,6 @@
 // In App.js in a new project
 
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Icon from 'react-native-vector-icons/FontAwesome5';
@@ -10,11 +10,12 @@ import {HomeTabs} from './bottonTabBar';
 import BottomTabBar from './bottonTabBar';
 import Login from '../screens/login';
 import Register from '../screens/register';
+import RegisterEmail from '../screens/registerEmail/index';
+import LoginEmail from '../screens/loginEmail';
 const Stack = createStackNavigator();
 
 export default function StackHome() {
   return (
-    
     <Stack.Navigator>
       <Stack.Screen
         name="Home"
@@ -41,6 +42,20 @@ export default function StackHome() {
       <Stack.Screen
         name="Register"
         component={Register}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="RegisterEmail"
+        component={RegisterEmail}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="LoginEmail"
+        component={LoginEmail}
         options={{
           headerShown: false,
         }}

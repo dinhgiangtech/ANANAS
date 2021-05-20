@@ -16,9 +16,13 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import {Provider} from 'react-redux';
+
 import firebase from '@react-native-firebase/app';
 import App from './App';
 import auth from '@react-native-firebase/auth';
+import {GoogleSignin} from '@react-native-google-signin/google-signin';
+import store from '../reduxs/store';
 const firebaseConfig = {
   apiKey: 'AIzaSyB30hOQP9UGGQV8cdYgmw0UI2GUbKVNufo',
   authDomain: 'anans-245e1.firebaseapp.com',
@@ -33,7 +37,11 @@ if (!firebase.apps.length) {
 }
 
 const Setup = () => {
-  return <App />;
+  return (
+    <Provider store={store}>
+      <App />
+    </Provider>
+  );
 };
 export {firebase, auth};
 export default Setup;

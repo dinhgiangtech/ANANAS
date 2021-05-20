@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet} from 'react-native';
+import applicationTheme from '../../themes/applicationStyle';
 import {windowHeight, windowWidth} from '../../themes/dimensions';
 
 const styles = StyleSheet.create({
@@ -7,6 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: windowWidth,
     height: windowHeight,
+    marginBottom: 5,
   },
   categories: {
     flexDirection: 'row',
@@ -14,24 +16,35 @@ const styles = StyleSheet.create({
     height: windowHeight * 0.1,
   },
   list: {
-    height: '75%',
+    paddingTop: 20,
   },
   scrollView: {
-    paddingVertical: 20,
+    paddingVertical: 40,
   },
-  itemCategories: {
-    borderColor: '#000',
-    borderWidth: 0.8,
-    height: 30,
-    width: '30%',
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: 20,
+  content: {
+    flexDirection: 'row',
+    padding: 10,
   },
-  txtItemCategories: {
-    fontFamily: 'NunitoSanSBoldI',
-    fontSize: 18,
-    letterSpacing: 3,
+  item: {
+    width: windowWidth,
+    paddingLeft: 30,
+    paddingTop: 20,
+    paddingRight: 20,
+  },
+
+  imageItem: {
+    width: '100%',
+    height: 200,
+  },
+  txtTitle: {
+    fontWeight: 'bold',
+    fontSize: 16,
+    marginTop: 10,
+  },
+  textContent: {
+    lineHeight: 20,
+    letterSpacing: 1,
+    fontFamily: applicationTheme.fontFamily,
   },
 });
 export default styles;

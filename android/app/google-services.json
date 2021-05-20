@@ -1,47 +1,39 @@
 {
-  "project_info": {
-    "project_number": "1007835270039",
-    "project_id": "anans-245e1",
-    "storage_bucket": "anans-245e1.appspot.com"
-  },
-  "client": [
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:1007835270039:android:2382e10c6c250d4f1f52d2",
-        "android_client_info": {
-          "package_name": "com.ananas"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "1007835270039-4sqroul66lbnvvjedsd72448idhjd0q2.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.ananas",
-            "certificate_hash": "fd956883863878f80e2abb2ee5bcfdbfafa578f8"
-          }
-        },
-        {
-          "client_id": "1007835270039-e1rkkqrose7q43es1riqec2bmnnjieh6.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDRyZMOJWfONvBja6AKxeIAyIf2zqJ5sX8"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "1007835270039-e1rkkqrose7q43es1riqec2bmnnjieh6.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    }
-  ],
-  "configuration_version": "1"
+	"project_info": {
+		"project_number": "1007835270039",
+		"project_id": "anans-245e1",
+		"storage_bucket": "anans-245e1.appspot.com"
+	},
+	"client": [
+		{
+			"client_info": {
+				"mobilesdk_app_id": "1:1007835270039:android:2382e10c6c250d4f1f52d2",
+				"android_client_info": {
+					"package_name": "com.ananas"
+				}
+			},
+			"oauth_client": [
+				{
+					"client_id": "1007835270039-e1rkkqrose7q43es1riqec2bmnnjieh6.apps.googleusercontent.com",
+					"client_type": 3
+				}
+			],
+			"api_key": [
+				{
+					"current_key": "AIzaSyDRyZMOJWfONvBja6AKxeIAyIf2zqJ5sX8"
+				}
+			],
+			"services": {
+				"appinvite_service": {
+					"other_platform_oauth_client": [
+						{
+							"client_id": "1007835270039-e1rkkqrose7q43es1riqec2bmnnjieh6.apps.googleusercontent.com",
+							"client_type": 3
+						}
+					]
+				}
+			}
+		}
+	],
+	"configuration_version": "1"
 }

@@ -4,6 +4,8 @@ import StackHome from './appStack';
 import AuthStack from './authStack';
 import Context from '../context';
 import {auth, firebase} from '../screens/setup';
+import {ActivityIndicator} from 'react-native';
+import applicationTheme from '../themes/applicationStyle';
 
 export default function RootNavigation() {
   const {user, setUser} = useContext(Context);

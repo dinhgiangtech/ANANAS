@@ -11,20 +11,26 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import applicationTheme from '../../../themes/applicationStyle';
+import applicationTheme from '../../themes/applicationStyle';
 import {windowHeight, windowWidth} from '../../../themes/dimensions';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import styles from './styles';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {useSelector, useDispatch} from 'react-redux';
+import {AddCart} from '../../reduxs/actions';
 
-function ItemList({data}) {
+function ItemList({data, navigation}) {
   const [heart, setHeart] = useState(false);
   const changeHeart = () => {
     setHeart(heart => (heart = !heart));
   };
+
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('ProductDetail', {data: data})}>
       <View style={styles.container}>
         <View>
-          <Image style={styles.image} source={{uri: data.image[1]}} />
+          <Image style={styles.image} source={{uri: data.image[0]}} />
         </View>
         <View style={styles.price}>
           <Text>{data.price}</Text>
@@ -57,58 +63,3 @@ function ItemList({data}) {
   );
 }
 export default ItemList;
-
-const styles = StyleSheet.create({
-  container: {
-    width: windowWidth * 0.5,
-    height: 340,
-    marginRight: 3,
-    marginBottom: 3,
-    backgroundColor: '#c0c0c0',
-  },
-  image: {
-    width: windowWidth * 0.5,
-    height: 200,
-    resizeMode: 'contain',
-  },
-  price: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 70,
-    height: 25,
-    backgroundColor: '#fff',
-    position: 'absolute',
-    bottom: 120,
-    left: 10,
-  },
-  title: {
-    position: 'absolute',
-    left: 10,
-    top: 255,
-    right: 10,
-  },
-  name: {
-    color: '#000',
-    fontSize: 15,
-    letterSpacing: 2,
-    lineHeight: 20,
-    color: '#000',
-    fontWeight: '600',
-    fontFamily: 'NunitoSanSBoldI',
-  },
-  status: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 100,
-    height: 25,
-    backgroundColor: '#fff',
-    position: 'absolute',
-    bottom: 90,
-    left: 10,
-  },
-  heart: {
-    position: 'absolute',
-    right: 10,
-    top: 10,
-  },
-});

@@ -168,7 +168,8 @@ const data = [
     ],
     gender: 'female',
     price: 365000,
-    type: 'shirt',
+    type: 'Graphic Tee',
+    fashion: 'shirt',
   },
   {
     id: 12,

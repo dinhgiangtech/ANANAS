@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -19,57 +19,44 @@ import {
 } from 'react-native';
 import RootNavigation from '../navigations/index';
 import {LoginManager, AccessToken, Profile} from 'react-native-fbsdk-next';
-import {auth, firebase} from './setup';
+import {auth, firebase, GoogleSignin} from './setup';
+import firestore from '@react-native-firebase/firestore';
+
 import Context from '../context';
+import {LogBox} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
+import {InitialCart} from '../reduxs/actions';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs(); //Ignore all log notifications
+
 const App = () => {
   const [user, setUser] = useState({});
+  const [error, setError] = useState('');
+  const [bag, setBag] = useState('');
+  const dispatch = useDispatch();
+  const data = useSelector(result => result._todoProduct);
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('Cart');
+      if (value !== null) {
+        const obj = JSON.parse(value);
+        dispatch(InitialCart(obj));
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
   return (
     <Context.Provider
       value={{
+        error,
         user,
         setUser,
-        fbLogin: async () => {
-          try {
-            // Attempt login with permissions
-            const result = await LoginManager.logInWithPermissions([
-              'public_profile',
-              'email',
-            ]);
-
-            if (result.isCancelled) {
-              throw 'User cancelled the login process';
-            }
-
-            // Once signed in, get the users AccesToken
-            const data = await AccessToken.getCurrentAccessToken();
-
-            if (!data) {
-              throw 'Something went wrong obtaining access token';
-            }
-
-            // Create a Firebase credential with the AccessToken
-            const facebookCredential = auth.FacebookAuthProvider.credential(
-              data.accessToken,
-            );
-
-            // Sign-in the user with the credential
-            await auth()
-              .signInWithCredential(facebookCredential)
-
-              .catch(error => {
-                console.log('Something went wrong with sign up: ', error);
-              });
-          } catch (error) {
-            console.log({error});
-          }
-        },
-        logout: async () => {
-          try {
-            await auth().signOut();
-          } catch (e) {
-            console.log(e);
-          }
-        },
       }}>
       <RootNavigation />
     </Context.Provider>

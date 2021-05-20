@@ -126,3 +126,4 @@ const data = [
     type: 'Shoe',
   },
 ];
+export default data;

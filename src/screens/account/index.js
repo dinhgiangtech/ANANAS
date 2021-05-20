@@ -41,7 +41,7 @@ const Account = ({navigation}) => {
         </View>
         <View style={styles.bottom}>
           <TouchableOpacity
-            onPress={() => navigation.navigate('Login')}
+            onPress={() => navigation.navigate('LoginEmail')}
             style={styles.login}>
             <View>
               <Text style={styles.textLogin}>Login</Text>
@@ -49,7 +49,7 @@ const Account = ({navigation}) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              navigation.navigate('Register');
+              navigation.navigate('RegisterEmail');
             }}
             style={styles.register}>
             <View>

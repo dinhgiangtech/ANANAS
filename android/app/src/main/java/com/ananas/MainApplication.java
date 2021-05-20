@@ -10,8 +10,8 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
+import co.apptailor.googlesignin.RNGoogleSigninPackage;  // <--- import
 import java.util.List;
-import co.apptailor.googlesignin.RNGoogleSigninPackage; 
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
