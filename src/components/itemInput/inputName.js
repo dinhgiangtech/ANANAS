@@ -21,13 +21,7 @@ import {
 import applicationTheme from '../../themes/applicationStyle';
 import colors from '../../themes/colors';
 
-const InformationUser = ({
-  navigation,
-  handleChange,
-  errors,
-  values,
-  touched,
-}) => {
+const InformationUser = ({handleChange, errors, values, touched}) => {
   // Stop listening for updates when no longer required
 
   return (

@@ -6,14 +6,16 @@ import applicationTheme from '../themes/applicationStyle';
 import {windowHeight} from '../themes/dimensions';
 import Home from '../screens/home';
 import Search from '../screens/search';
-import {SearchStack, SaleOffStack, ShoppingBag} from './childStack';
+import {SearchStack, SaleOffStack, ShoppingBag, StackWish} from './childStack';
 import SaleOff from '../screens/home';
 import {useSelector} from 'react-redux';
-import {cos} from 'react-native-reanimated';
+import Target from '../screens/target';
 const Tab = createBottomTabNavigator();
 
 export default function BottomTabBar() {
   const numberCart = useSelector(state => state._todoProduct.numberCart);
+  const numberWish = useSelector(state => state._todoWishList.numberWish);
+
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -42,7 +44,7 @@ export default function BottomTabBar() {
       />
       <Tab.Screen
         name="WishList"
-        component={Home}
+        component={StackWish}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons
@@ -51,7 +53,7 @@ export default function BottomTabBar() {
               size={30}
             />
           ),
-          tabBarBadge: 1,
+          tabBarBadge: numberWish === 0 ? null : numberWish,
         }}
       />
       <Tab.Screen
@@ -65,12 +67,12 @@ export default function BottomTabBar() {
               size={30}
             />
           ),
-          tabBarBadge: numberCart,
+          tabBarBadge: numberCart === 0 ? null : numberCart,
         }}
       />
       <Tab.Screen
         name="Target"
-        component={Home}
+        component={Target}
         options={{
           tabBarIcon: ({color}) => (
             <MaterialCommunityIcons

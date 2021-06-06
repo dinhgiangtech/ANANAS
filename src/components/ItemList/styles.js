@@ -6,7 +6,7 @@ import {windowHeight, windowWidth} from '../../themes/dimensions';
 const styles = StyleSheet.create({
   container: {
     width: windowWidth * 0.5,
-    height: 350,
+    height: 380,
     marginRight: 3,
     marginLeft: 3,
     marginBottom: 3,
@@ -17,21 +17,32 @@ const styles = StyleSheet.create({
     height: 200,
     resizeMode: 'contain',
   },
-  price: {
+  realprice: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 70,
+    width: 110,
     height: 25,
 
     backgroundColor: '#fff',
     position: 'absolute',
-    bottom: 120,
+    top: 195,
+    left: 10,
+  },
+  price: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 110,
+    height: 25,
+
+    backgroundColor: '#fff',
+    position: 'absolute',
+    top: 225,
     left: 10,
   },
   title: {
     position: 'absolute',
     left: 10,
-    top: 260,
+    top: 280,
     right: 10,
   },
   name: {
@@ -51,7 +62,7 @@ const styles = StyleSheet.create({
     height: 25,
     backgroundColor: '#fff',
     position: 'absolute',
-    bottom: 90,
+    top: 255,
     left: 10,
     fontWeight: 'bold',
   },

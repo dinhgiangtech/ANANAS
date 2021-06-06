@@ -17,40 +17,34 @@ const Product = ({navigation, type, target, title}) => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [deleted, setDeleted] = useState(false);
-  const getProducts = async () => {
-    try {
-      const list = [];
-      setLoading(true);
-      await firestore()
-        .collection('products')
-        .where(type, '==', target)
-        .limit(4)
-        .get()
-        .then(querySnapshot => {
-          querySnapshot.forEach(element => {
-            list.push({
-              id: element.data().id,
-              description: element.data().description,
-              name: element.data().name,
-              gender: element.data().gender,
-              status: element.data().status,
-              fashion: element.data().fashion,
-              price: element.data().price,
-              image: Object.values(element.data().image),
-              size: Object.values(element.data().size),
-            });
-          });
-
-          setData(list);
-          setLoading(false);
-        });
-    } catch (e) {
-      Alert.alert(e.message);
-    }
-  };
 
   useEffect(() => {
-    getProducts();
+    const list = [];
+    setLoading(true);
+    const subscriber = firestore()
+      .collection('products')
+      .where(type, '==', target)
+      .limit(4)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(element => {
+          list.push({
+            id: element.data().id,
+            description: element.data().description,
+            name: element.data().name,
+            gender: element.data().gender,
+            status: element.data().status,
+            fashion: element.data().fashion,
+            price: element.data().price,
+            image: Object.values(element.data().image),
+            size: Object.values(element.data().size),
+            realprice: element.data().realprice,
+          });
+        });
+        setData(list);
+        setLoading(false);
+      });
+    return () => subscriber;
     // Stop listening for updates when no longer required
   }, []);
 
@@ -76,7 +70,6 @@ const Product = ({navigation, type, target, title}) => {
       {!loading ? (
         <View>
           <FlatList
-            style={{width: 350}}
             data={data}
             contentContainerStyle={{paddingBottom: 20}}
             horizontal={true}

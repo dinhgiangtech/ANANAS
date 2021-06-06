@@ -98,7 +98,9 @@ const ItemSearch = ({navigation, handleHide}) => {
         </TouchableOpacity>
       </View>
       {loading ? (
-        <Loading />
+        <View style={{width: '100%', height: '100%'}}>
+          <Loading />
+        </View>
       ) : (
         <View>
           {num !== 0 ? (
@@ -115,7 +117,6 @@ const ItemSearch = ({navigation, handleHide}) => {
               data={data}
               horizontal={true}
               showsHorizontalScrollIndicator={false}
-              pagingEnabled={true}
               keyExtractor={item => item.id}
               renderItem={({item}) => (
                 <ItemList navigation={navigation} data={item} />

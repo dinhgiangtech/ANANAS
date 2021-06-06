@@ -20,6 +20,9 @@ import applicationTheme from '../../../themes/applicationStyle';
 import Options from './option';
 import Quantity from './quantity';
 import {useSelector} from 'react-redux';
+import {moneyFormat} from '../../../utils/moneyFomat';
+import {auth} from '../../../screens/setup';
+import firestore from '@react-native-firebase/firestore';
 
 function ItemList({data, navigation}) {
   const quantity = data.quantity;
@@ -28,7 +31,7 @@ function ItemList({data, navigation}) {
   const [modalChildVisible, setModalChildVisible] = useState(false);
 
   const openModal = () => {
-    setModalVisible(true);
+    setModalVisible(!modalVisible);
   };
   const closeModal = () => {
     setModalVisible(false);
@@ -62,10 +65,11 @@ function ItemList({data, navigation}) {
         </View>
         <View style={styles.content}>
           <View style={styles.wrapPrice}>
-            <Text style={styles.text}>đ {data.price}</Text>
+            <Text style={styles.text}> {moneyFormat(data.price)}</Text>
           </View>
           <Text style={styles.textName}>{data.name}</Text>
           <Text style={styles.text}>Quantity: {data.quantity}</Text>
+          <Text style={styles.text}>Size: {data.selectSize}</Text>
         </View>
       </View>
       <TouchableOpacity style={styles.dots} onPress={openModal}>
@@ -93,7 +97,6 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 15,
     color: '#000',
-    letterSpacing: 2,
   },
   textName: {
     fontSize: 15,
@@ -104,7 +107,7 @@ const styles = StyleSheet.create({
   wrapPrice: {
     marginTop: 10,
     backgroundColor: '#fff',
-    width: 110,
+    width: 120,
     alignItems: 'center',
     marginBottom: 20,
   },

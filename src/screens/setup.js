@@ -17,12 +17,14 @@ import {
   View,
 } from 'react-native';
 import {Provider} from 'react-redux';
+import messaging from '@react-native-firebase/messaging';
 
 import firebase from '@react-native-firebase/app';
 import App from './App';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin} from '@react-native-google-signin/google-signin';
 import store from '../reduxs/store';
+import {useEffect} from 'react';
 const firebaseConfig = {
   apiKey: 'AIzaSyB30hOQP9UGGQV8cdYgmw0UI2GUbKVNufo',
   authDomain: 'anans-245e1.firebaseapp.com',
@@ -37,6 +39,25 @@ if (!firebase.apps.length) {
 }
 
 const Setup = () => {
+  useEffect(() => {
+    messaging().onNotificationOpenedApp(remoteMessage => {
+      console.log(
+        'Notification caused app to open from background state:',
+        remoteMessage.notification,
+      );
+
+      messaging()
+        .getInitialNotification()
+        .then(remoteMessage => {
+          if (remoteMessage) {
+            console.log(
+              'Notification caused app to open from quit state:',
+              remoteMessage.notification,
+            );
+          }
+        });
+    });
+  }, []);
   return (
     <Provider store={store}>
       <App />

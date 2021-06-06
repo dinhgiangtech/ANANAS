@@ -38,6 +38,7 @@ const Product = ({navigation, type, target, title}) => {
               price: element.data().price,
               image: Object.values(element.data().image),
               size: Object.values(element.data().size),
+              realprice: element.data().realprice,
             });
           });
 

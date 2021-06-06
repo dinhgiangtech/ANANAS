@@ -15,6 +15,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: windowWidth,
+    marginBottom: 20,
   },
   wrapName: {
     flexDirection: 'row',
@@ -76,17 +77,38 @@ const styles = StyleSheet.create({
   },
   btBuy: {
     margin: 20,
-    width: '60%',
+    justifyContent: 'center',
+    height: 50,
+    borderWidth: 0.5,
+    width: '50%',
+    alignItems: 'center',
+    backgroundColor: '#000',
+  },
+  btSelect: {
+    marginLeft: 20,
+    width: '30%',
+    justifyContent: 'center',
+    height: 50,
+    borderWidth: 0.5,
+  },
+  btBuyNow: {
+    marginLeft: 20,
+    width: '90%',
     justifyContent: 'center',
     height: 50,
     backgroundColor: applicationTheme.primary,
-    alignItems: 'center',
   },
   txtBtBuy: {
     fontSize: 18,
-    color: '#fff',
-    letterSpacing: 2,
+    color: '#000',
     fontFamily: applicationTheme.fontFamily,
+    fontWeight: 'bold',
+  },
+  txtBtBuyNow: {
+    color: '#fff',
+    fontSize: 18,
+    fontFamily: applicationTheme.fontFamily,
+    fontWeight: 'bold',
   },
   header: {
     fontSize: 18,

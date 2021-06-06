@@ -29,15 +29,28 @@ import Form from './formIk';
 import Loading from '../../components/activityIndicator';
 
 const InformationUser = ({navigation}) => {
-  const [user, setUser] = useState(null);
-
+  const initUser = {
+    fname: '',
+    lname: '',
+    date: '',
+    gender: '',
+    sizeShoe: '',
+    sizeShirt: '',
+    number: '',
+  };
+  const [user, setUser] = useState(initUser);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const subscriber = firestore()
       .collection('users')
       .doc(auth().currentUser.uid)
       .onSnapshot(documentSnapshot => {
-        setUser(documentSnapshot.data());
-        console.log(documentSnapshot.data());
+        if (documentSnapshot.data()) {
+          setUser(documentSnapshot.data());
+          setLoading(false);
+        } else {
+          setLoading(false);
+        }
       });
 
     // Stop listening for updates when no longer required
@@ -48,14 +61,14 @@ const InformationUser = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      {user ? (
+      {loading ? (
+        <Loading />
+      ) : (
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={styles.scrollView}>
           <Form user={user} navigation={navigation} />
         </ScrollView>
-      ) : (
-        <Loading />
       )}
     </SafeAreaView>
   );

@@ -15,7 +15,7 @@ export function updateUser(value) {
       date: value.date,
       sizeShoe: value.sizeShoe,
       sizeShirt: value.sizeShirt,
-      address: value.address,
+      number: value.number,
     })
     .then(() => {
       Alert.alert('Thông tin đã được cập nhật!');

@@ -9,6 +9,9 @@ export const INITIAL_CART = 'INITIAL_CART';
 export const ADD_WISH_LIST = 'ADD_WISH_LIST';
 export const DELETE_WISH_LIST = 'DELETE_WISH_LIST';
 export const INITIAL_WISH_LIST = 'INITIAL_WISH_LIST';
+export const LOGIN_USER = 'LOGIN_USER';
+export const LOG_OUT = 'LOG_OUT';
+export const DELETE_ALL_CART = 'DELETE_ALL_CART';
 
 export function GetNumberCart() {
   return {
@@ -47,7 +50,6 @@ export function DecreaseQuantity(payload) {
   };
 }
 export function InitialCart(payload) {
-  console.log('action' + payload);
   return {
     type: 'INITIAL_CART',
     payload,
@@ -66,9 +68,24 @@ export function DeleteWhishList(payload) {
   };
 }
 export function InitialWishList(payload) {
-  console.log('action' + payload);
   return {
     type: 'INITIAL_WISH_LIST',
     payload,
+  };
+}
+export function LoginUser(payload) {
+  return {
+    type: 'LOGIN_USER',
+    payload,
+  };
+}
+export function LogOut() {
+  return {
+    type: 'LOG_OUT',
+  };
+}
+export function DeleteAllCart() {
+  return {
+    type: 'DELETE_ALL_CART',
   };
 }

@@ -28,7 +28,7 @@ const Search = ({navigation}) => {
         <ItemSearch navigation={navigation} handleHide={handleHide} />
       ) : (
         <ScrollView style={styles.scrollView}>
-          <Header navigation={navigation} title={'Shop'} />
+          <Header navigation={navigation} title={'SHOP'} />
           <SearchBar handleShow={handleShow} />
           <Category
             type={'type'}
@@ -66,12 +66,14 @@ const Search = ({navigation}) => {
             target={'Basas'}
             title={'BASAS'}
           />
-          <Product
-            navigation={navigation}
-            type={'type'}
-            target={'Vintas'}
-            title={'Vintas'}
-          />
+          <View style={{paddingBottom: 60}}>
+            <Product
+              navigation={navigation}
+              type={'type'}
+              target={'Vintas'}
+              title={'Vintas'}
+            />
+          </View>
         </ScrollView>
       )}
     </SafeAreaView>

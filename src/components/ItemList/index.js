@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 
 import {
   Alert,
@@ -17,12 +17,31 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import styles from './styles';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useSelector, useDispatch} from 'react-redux';
-import {AddCart} from '../../reduxs/actions';
-
+import {AddCart, AddWhishList, DeleteWhishList} from '../../reduxs/actions';
+import {moneyFormat} from '../../utils/moneyFomat';
 function ItemList({data, navigation}) {
   const [heart, setHeart] = useState(false);
+  const dispatch = useDispatch();
+  const {List} = useSelector(state => state._todoWishList);
+  useEffect(() => {
+    const found = List.find(item => item.id === data.id);
+    if (found) {
+      setHeart(true);
+    } else {
+      setHeart(false);
+    }
+  }, [List]);
   const changeHeart = () => {
-    setHeart(heart => (heart = !heart));
+    if (!heart) {
+      setHeart(true);
+      dispatch(AddWhishList(data));
+      dispatch({type: 'Add_To_Wish'});
+    } else {
+      setHeart(false);
+
+      dispatch(DeleteWhishList({id: data.id}));
+      dispatch({type: 'Add_To_Wish'});
+    }
   };
 
   return (
@@ -32,9 +51,15 @@ function ItemList({data, navigation}) {
         <View>
           <Image style={styles.image} source={{uri: data.image[0]}} />
         </View>
+
         <View style={styles.price}>
-          <Text>{data.price}</Text>
+          <Text>{moneyFormat(data.price)}</Text>
         </View>
+        {data.realprice ? (
+          <View style={styles.realprice}>
+            <Text disable={true}>{moneyFormat(data.realprice)}</Text>
+          </View>
+        ) : null}
         <View style={styles.title}>
           <Text style={styles.name}>{data.name}</Text>
         </View>
@@ -47,13 +72,13 @@ function ItemList({data, navigation}) {
               <MaterialCommunityIcons
                 name="heart"
                 color={applicationTheme.primary}
-                size={40}
+                size={35}
               />
             ) : (
               <MaterialCommunityIcons
                 name="heart-outline"
                 color={applicationTheme.primary}
-                size={40}
+                size={35}
               />
             )}
           </TouchableOpacity>

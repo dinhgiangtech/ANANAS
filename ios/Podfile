@@ -12,6 +12,8 @@ target 'Ananas' do
     :hermes_enabled => false
   )
 
+  pod 'RNFBMessaging', :path => '../node_modules/@react-native-firebase/messaging'
+
   target 'AnanasTests' do
     inherit! :complete
     # Pods for testing

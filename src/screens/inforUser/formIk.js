@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React from 'react';
+import React, {useState} from 'react';
 import {View} from 'react-native';
 import {Formik} from 'formik';
 import * as yup from 'yup';
@@ -14,19 +14,19 @@ import styles from './styles';
 import {updateUser} from '../../services/firestore/user';
 import InputName from '../../components/itemInput/inputName';
 import InputDate from '../../components/itemInput/inputDate';
-import InputAddress from '../../components/itemInput/inputAddress';
 import InputGender from '../../components/itemInput/inputGender';
 import InputSize from '../../components/itemInput/inputSize';
-import InputEmail from '../../components/itemInput/inputEmail';
+import InputNumber from '../../components/itemInput/inputNumber';
 import ButtonSubmit from '../../components/button/buttonSubmit';
 import HeaderDefault from '../../components/headerBack';
 
 const Form = ({user, navigation}) => {
+  const [idCity, setIdCity] = useState(null);
   const validationSchema = yup.object().shape({
     fname: yup.string().required('Không được bỏ trống'),
     lname: yup.string().required('Không được bỏ trống'),
     date: yup.date().required('Không được bỏ trông'),
-    address: yup.string().required('Không được bỏ trống'),
+    number: yup.string().required('Không được bỏ trống'),
   });
 
   // Stop listening for updates when no longer required
@@ -41,10 +41,10 @@ const Form = ({user, navigation}) => {
         fname: user.fname,
         lname: user.lname,
         date: user.date,
-        address: user.address,
         gender: user.gender,
         sizeShoe: user.sizeShoe,
         sizeShirt: user.sizeShirt,
+        number: user.number,
       }}
       validationSchema={validationSchema}
       onSubmit={values => {
@@ -53,7 +53,6 @@ const Form = ({user, navigation}) => {
       {({handleChange, handleSubmit, touched, errors, values}) => (
         <View style={styles.form}>
           <HeaderDefault title={'THÔNG TIN CÁ NHÂN'} navigation={navigation} />
-          <InputEmail user={user} />
           <InputName
             handleChange={handleChange}
             errors={errors}
@@ -67,7 +66,7 @@ const Form = ({user, navigation}) => {
             values={values}
           />
 
-          <InputAddress
+          <InputNumber
             handleChange={handleChange}
             errors={errors}
             touched={touched}
@@ -79,13 +78,11 @@ const Form = ({user, navigation}) => {
             touched={touched}
             values={values}
           />
-          <InputSize
-            handleChange={handleChange}
-            errors={errors}
-            touched={touched}
-            values={values}
+
+          <ButtonSubmit
+            handleSubmit={handleSubmit}
+            title={'TIẾN HÀNH ĐẶT MUA'}
           />
-          <ButtonSubmit handleSubmit={handleSubmit} />
         </View>
       )}
     </Formik>

@@ -32,6 +32,7 @@ const ListProducts = ({navigation, route}) => {
               price: element.data().price,
               image: Object.values(element.data().image),
               size: Object.values(element.data().size),
+              realprice: element.data().realprice,
             });
           });
 

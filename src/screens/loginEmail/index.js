@@ -33,7 +33,6 @@ const Login = ({navigation}) => {
   const [secureTextEntry, setSecureTextEntry] = useState(true);
   const [initialize, setInitialize] = useState(false);
   const initialValues = {email: '', password: '', secureTextEntry: true};
-  const {user} = useContext(Context);
   async function handleLogin(value) {
     try {
       setInitialize(true);

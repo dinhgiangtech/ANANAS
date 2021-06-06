@@ -25,24 +25,29 @@ import Header from './header';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {logout} from '../../services/Authentication';
 import styles from './styles';
+import {useSelector} from 'react-redux';
 const User = ({navigation}) => {
-  const {user} = useContext(Context);
+  const {email} = useSelector(state => state._user);
   const close = () => {
     navigation.navigate('Home');
   };
   return (
     <View style={styles.scrollView}>
-      <Header name={user.email} navigation={navigation} />
+      <Header name={email} navigation={navigation} />
       <TouchableOpacity
         onPress={() => navigation.navigate('inforUser')}
         style={styles.item}>
         <Text style={styles.text}>THÔNG TIN CÁ NHÂN</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={styles.text}>GIỎ HÀNG</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('MyAddress')}
+        style={styles.item}>
+        <Text style={styles.text}>ĐỊA CHỈ</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.item}>
-        <Text style={styles.text}>CÁC SẢN PHÂM YÊU THÍCH</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('MyOrder')}
+        style={styles.item}>
+        <Text style={styles.text}>ĐƠN HÀNG CỦA TÔI</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.item}>

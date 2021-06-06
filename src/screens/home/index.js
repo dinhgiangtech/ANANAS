@@ -25,7 +25,7 @@ const image = [
 const SaleOff = ({navigation}) => {
   return (
     <ScrollView style={styles.container}>
-      <Header navigation={navigation} title={'Sale Off'} />
+      <Header navigation={navigation} title={'SALE OFF'} />
       <View style={styles.list}>
         <FlatList
           indicatorStyle={'#000'}
@@ -58,12 +58,14 @@ const SaleOff = ({navigation}) => {
           đang rơi vào tình trạng bể size, bể số.
         </Text>
       </View>
-      <Product
-        navigation={navigation}
-        type={'status'}
-        target={'Best Seller'}
-        title={'Best Seller'}
-      />
+      <View style={{paddingBottom: 60}}>
+        <Product
+          navigation={navigation}
+          type={'status'}
+          target={'Best Seller'}
+          title={'Best Seller'}
+        />
+      </View>
     </ScrollView>
   );
 };

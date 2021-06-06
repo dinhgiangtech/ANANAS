@@ -12,10 +12,13 @@ import {
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Context from '../../context';
 import styles from './styles';
+import {useDispatch, useSelector} from 'react-redux';
+
 const Header = ({title, navigation}) => {
-  const {user} = useContext(Context);
+  const uid = useSelector(state => state._user.uid);
+  console.log(uid);
   const onPress = () => {
-    if (!user) {
+    if (!uid) {
       navigation.navigate('Account');
     } else {
       navigation.navigate('User');

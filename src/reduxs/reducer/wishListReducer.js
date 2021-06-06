@@ -5,7 +5,7 @@ const initProduct = {
   List: [],
 };
 
-export default function todoProduct(state = initProduct, action) {
+export default function todoWishList(state = initProduct, action) {
   switch (action.type) {
     case ADD_WISH_LIST:
       let wish = {
@@ -13,8 +13,9 @@ export default function todoProduct(state = initProduct, action) {
         name: action.payload.name,
         image: action.payload.image,
         price: action.payload.price,
-        status: action.payload.price,
+        status: action.payload.status,
         size: action.payload.size,
+        description: action.payload.description,
       };
       state.List.push(wish);
 
@@ -22,20 +23,18 @@ export default function todoProduct(state = initProduct, action) {
         ...state,
         numberWish: state.numberWish + 1,
       };
-
     case DELETE_WISH_LIST:
       return {
         ...state,
-        numberWhish: state.numberCart - 1,
+        numberWish: state.numberWish - 1,
         List: state.List.filter(item => {
           return item.id != action.payload.id;
         }),
       };
     case INITIAL_WISH_LIST:
       return {
-        ...state,
-        numberWhish: action.payload.numberCart,
-        List: action.payload.Carts,
+        numberWish: action.payload.numberWish,
+        List: action.payload.List,
       };
     default:
       return state;

@@ -17,7 +17,7 @@ import {
   Alert,
   View,
 } from 'react-native';
-import RootNavigation from '../navigations/index';
+import RootNavigation from '../navigations';
 import {LoginManager, AccessToken, Profile} from 'react-native-fbsdk-next';
 import {auth, firebase, GoogleSignin} from './setup';
 import firestore from '@react-native-firebase/firestore';
@@ -25,7 +25,7 @@ import firestore from '@react-native-firebase/firestore';
 import Context from '../context';
 import {LogBox} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {InitialCart} from '../reduxs/actions';
+import {InitialCart, InitialWishList} from '../reduxs/actions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
 LogBox.ignoreAllLogs(); //Ignore all log notifications
@@ -47,20 +47,23 @@ const App = () => {
       // error reading value
     }
   };
+  const getWish = async () => {
+    try {
+      const wish = await AsyncStorage.getItem('Wish');
+      if (wish !== null) {
+        const obj = JSON.parse(wish);
+        dispatch(InitialWishList(obj));
+      }
+    } catch (e) {
+      // error reading value
+    }
+  };
 
   useEffect(() => {
     getData();
+    getWish();
   }, []);
-  return (
-    <Context.Provider
-      value={{
-        error,
-        user,
-        setUser,
-      }}>
-      <RootNavigation />
-    </Context.Provider>
-  );
+  return <RootNavigation />;
 };
 
 export default App;

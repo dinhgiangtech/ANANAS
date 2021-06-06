@@ -22,11 +22,11 @@ import {
 import applicationTheme from '../../themes/applicationStyle';
 import colors from '../../themes/colors';
 
-const ButtonSubmit = ({handleSubmit}) => {
+const ButtonSubmit = ({handleSubmit, title}) => {
   return (
     <TouchableOpacity onPress={handleSubmit}>
       <View style={styles.btRegister}>
-        <Text style={styles.textBt}>SIGN UP</Text>
+        <Text style={styles.textBt}>{title}</Text>
       </View>
     </TouchableOpacity>
   );
@@ -35,14 +35,12 @@ const styles = StyleSheet.create({
   btRegister: {
     height: 60,
     paddingVertical: 5,
-    marginHorizontal: 20,
     marginTop: 40,
     justifyContent: 'center',
     backgroundColor: applicationTheme.primary,
     alignItems: 'center',
   },
   textBt: {
-    letterSpacing: 3,
     color: '#fff',
     fontSize: 20,
     fontWeight: 'bold',

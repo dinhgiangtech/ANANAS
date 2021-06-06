@@ -10,6 +10,10 @@ import ProductDetail from '../screens/productDetail';
 import SaleOff from '../screens/home';
 import Search from '../screens/search';
 import Bag from '../screens/shoppingBag';
+import WishList from '../screens/wishList';
+import NewAddress from '../screens/addAddress';
+import LoginEmail from '../screens/loginEmail';
+import Order from '../screens/order';
 const Stack = createStackNavigator();
 
 export function SearchStack() {
@@ -101,6 +105,54 @@ export function ShoppingBag() {
       <Stack.Screen
         name="ListProducts"
         component={ListProducts}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ProductDetail"
+        component={ProductDetail}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ShoppingBag"
+        component={Bag}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="NewAddress"
+        component={NewAddress}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="LoginEmail"
+        component={LoginEmail}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="Order"
+        component={Order}
+        options={{
+          headerShown: false,
+        }}
+      />
+    </Stack.Navigator>
+  );
+}
+export function StackWish() {
+  return (
+    <Stack.Navigator>
+      <Stack.Screen
+        name="Home"
+        component={WishList}
         options={{
           headerShown: false,
         }}
